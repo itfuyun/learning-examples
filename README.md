@@ -1,6 +1,6 @@
 # learning-examples
 ## 目录
-- [redis-distributed-lock-example](./redis-distributed-lock-example) 基于redis分布式锁
+- [springboot-redis-distributed-lock-example](./springboot-redis-distributed-lock-example) 基于redis分布式锁
 - [springboot-exception-handling-example](./springboot-exception-handling-example) springboot统一异常处理
 - [springboot-validator-example](./springboot-validator-example) springboot优雅的参数校验示例
 - [springboot-aop-log-example](./springboot-aop-log-example) springboot基于aop实现系统日志记录
