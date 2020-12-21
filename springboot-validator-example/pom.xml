@@ -13,7 +13,6 @@
     <artifactId>springboot-validator-example</artifactId>
 
     <name>springboot-validator-example</name>
-    <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
     <properties>
@@ -23,21 +22,15 @@
     </properties>
 
     <dependencies>
-        <!--springboot web模块 -->
+        <!--公共模块 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.example</groupId>
+            <artifactId>common-example</artifactId>
         </dependency>
         <!--校验 springboot2.3.x开始需要单独引入 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
-        <!--测试包 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

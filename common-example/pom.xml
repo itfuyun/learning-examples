@@ -10,9 +10,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springboot-exception-handling-example</artifactId>
+    <artifactId>common-example</artifactId>
 
-    <name>springboot-exception-handling-example</name>
+    <name>common-example</name>
     <url>http://www.example.com</url>
 
     <properties>

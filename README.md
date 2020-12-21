@@ -1,11 +1,10 @@
-# learning-examples
+# 示例
 ## 目录
-- [springboot-redis-distributed-lock-example](./springboot-redis-distributed-lock-example) 基于redis分布式锁
-- [springboot-exception-handling-example](./springboot-exception-handling-example) springboot统一异常处理
-- [springboot-validator-example](./springboot-validator-example) springboot优雅的参数校验示例
-- [springboot-aop-log-example](./springboot-aop-log-example) springboot基于aop实现系统日志记录
-- [springboot-response-example](./springboot-response-example) springboot接口统一响应格式
-- [springboot-configure-encryption-example](./springboot-configure-encryption-example) springboot配置文件敏感信息加密保护
-- [springboot-mybatis-example](./springboot-mybatis-example) springboot整合mybatis
-- [springboot-redis-example](./springboot-redis-example) springboot整合redis
-- [springboot-test-example](./springboot-test-example) springboot单元测试
+-[x] [parent](./parent) 项目父pom，jar包管理
+-[x] [common-example](./common-example) 项目公共模块（响应封装、异常处理）
+-[x] [springboot-response-exception-example](./springboot-response-exception-example) springboot统一响应结果和异常处理
+-[x] [springboot-validator-example](./springboot-validator-example) springboot优雅的参数校验示例
+-[x] [springboot-redis-example](./springboot-redis-example) springboot整合redis
+-[x] [springboot-redis-distributed-lock-example](./springboot-redis-distributed-lock-example) 基于redis分布式锁
+-[ ] [springboot-aop-log-example](./springboot-aop-log-example) springboot基于aop实现系统日志记录（待补充）
+-[ ] [springboot-configure-encryption-example](./springboot-configure-encryption-example) springboot配置文件敏感信息加密保护（待补充）

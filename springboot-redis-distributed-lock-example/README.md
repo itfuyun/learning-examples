@@ -53,7 +53,7 @@ public @interface Lock {
     long expire() default 30L;
 }
 ```
-编写AOP
+编写AOP切面
 ```
 @Aspect
 @Component
@@ -97,7 +97,7 @@ public class LockAspect implements Ordered {
         } else {
             //获取分布式锁失败
             log.info("获取分布式锁失败，lockKey：[{}]，value：[{}]", lockKey, uuid);
-            throw new Exception("Distributed Lock Error, LockKey is [" + lockKey + "]");
+            throw new BusinessException("Distributed Lock Error, LockKey is [" + lockKey + "]");
         }
     }
 
@@ -161,15 +161,18 @@ public class LockAspect implements Ordered {
 ## 如何使用？
 只需要在某个方法上打上自定义注解即可
 ```
-@Lock(lockKey = "testKey", expire = 10)
-public String testLock() {
-    try {
-        //睡眠1秒，模拟业务执行时间
-        Thread.sleep(1000);
-    } catch (InterruptedException e) {
-        e.printStackTrace();
+@Service
+public class ExampleService {
+
+    @Lock(lockKey = "testKey", expire = 10)
+    public void testLock() {
+        try {
+            //睡眠1秒，模拟业务执行时间
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
-    return "ok";
 }
 ```
 lockKey请勿重复，否则将会一同竞争同一类型的锁，不同方法请定义不同lockKey，过期时间expire根据实际情况设置

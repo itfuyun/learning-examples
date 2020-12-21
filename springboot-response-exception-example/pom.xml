@@ -10,9 +10,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>springboot-redis-example</artifactId>
+    <artifactId>springboot-response-exception-example</artifactId>
 
-    <name>springboot-redis-example</name>
+    <name>springboot-response-exception-example</name>
     <url>http://www.example.com</url>
 
     <properties>
@@ -22,14 +22,16 @@
     </properties>
 
     <dependencies>
-        <!--公共模块 -->
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>common-example</artifactId>
-        </dependency>
+        <!--springboot web模块 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--测试包 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

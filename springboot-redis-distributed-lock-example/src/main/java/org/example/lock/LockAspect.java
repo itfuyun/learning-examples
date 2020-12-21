@@ -5,6 +5,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.example.common.exception.BusinessException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +65,7 @@ public class LockAspect implements Ordered {
         } else {
             //获取分布式锁失败
             log.info("获取分布式锁失败，lockKey：[{}]，value：[{}]", lockKey, uuid);
-            throw new Exception("Distributed Lock Error, LockKey is [" + lockKey + "]");
+            throw new BusinessException("Distributed Lock Error, LockKey is [" + lockKey + "]");
         }
     }
 

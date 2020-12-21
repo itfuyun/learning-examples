@@ -1,5 +1,7 @@
-package org.example.handler;
+package org.example.common.handler;
 
+import org.example.common.response.ErrorCodeEnum;
+import org.example.common.response.ResultEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.error.ErrorAttributeOptions;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
@@ -49,17 +51,21 @@ public class ErrorControllerHandler implements ErrorController {
         //获取到默认错误信息
         Map<String, Object> attr = this.errorAttributes.getErrorAttributes(req, ErrorAttributeOptions.defaults());
         int status = getStatus(request);
+        ErrorCodeEnum errorCodeEnum;
         switch (status) {
             case 401:
-                return "未认证";
+                errorCodeEnum = ErrorCodeEnum.UNAUTHORIZED;
+                break;
             case 404:
-                return "请求路径不存在";
+                errorCodeEnum = ErrorCodeEnum.NOT_FOUND;
+                break;
             case 403:
-                return "无权限";
+                errorCodeEnum = ErrorCodeEnum.FORBIDDEN;
+                break;
             default:
-                return "系统繁忙";
+                errorCodeEnum = ErrorCodeEnum.INTERNAL_SERVER_ERROR;
         }
-
+        return ResultEntity.failed(errorCodeEnum.getCode(),errorCodeEnum.getMsg());
     }
 
     /**

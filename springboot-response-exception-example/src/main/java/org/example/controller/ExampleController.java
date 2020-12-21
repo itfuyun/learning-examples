@@ -1,5 +1,7 @@
 package org.example.controller;
 
+import org.example.common.exception.BusinessException;
+import org.example.common.response.ResultEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExampleController {
 
     @GetMapping("/hello")
-    public String hello() {
-        return "hello";
+    public ResultEntity<String> hello() {
+        return ResultEntity.ok("hello");
     }
 
     @GetMapping("/exception")
-    public String exception() throws Exception {
-        throw new Exception("发生错误");
+    public ResultEntity exception() throws Exception {
+        throw new BusinessException("发生业务异常");
     }
 }

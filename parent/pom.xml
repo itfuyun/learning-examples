@@ -11,8 +11,9 @@
     <modules>
         <module>../springboot-redis-distributed-lock-example</module>
         <module>../springboot-redis-example</module>
-        <module>../springboot-exception-handling-example</module>
+        <module>../springboot-response-exception-example</module>
         <module>../springboot-validator-example</module>
+        <module>../common-example</module>
     </modules>
 
     <name>parent</name>
@@ -22,6 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <example.version>1.0-SNAPSHOT</example.version>
         <spring-boot.version>2.4.0</spring-boot.version>
         <shiro-spring.version>1.7.0</shiro-spring.version>
         <shiro-redis.version>3.3.1</shiro-redis.version>
@@ -36,6 +38,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--公共模块-->
+            <dependency>
+                <groupId>org.example</groupId>
+                <artifactId>common-example</artifactId>
+                <version>${example.version}</version>
+            </dependency>
             <!--接口文档-->
             <dependency>
                 <groupId>io.springfox</groupId>

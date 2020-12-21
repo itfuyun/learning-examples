@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.common.response.ResultEntity;
 import org.example.service.ExampleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,19 +22,20 @@ public class ExampleController {
     ExampleService exampleService;
 
     @PostMapping("/set")
-    public String set(String key,String value){
+    public ResultEntity set(String key, String value){
         exampleService.set(key, value);
-        return "ok";
+        return ResultEntity.ok();
     }
 
     @GetMapping("/get")
-    public String get(String key){
-        return exampleService.get(key);
+    public ResultEntity<String> get(String key){
+        String val = exampleService.get(key);
+        return ResultEntity.ok(val);
     }
 
     @PostMapping("/del")
-    public String set(String key){
+    public ResultEntity set(String key){
         exampleService.del(key);
-        return "ok";
+        return ResultEntity.ok();
     }
 }

@@ -13,15 +13,12 @@ import org.springframework.stereotype.Service;
 public class ExampleService {
 
     @Lock(lockKey = "testKey", expire = 10)
-    public String testLock() {
+    public void testLock() {
         try {
             //睡眠1秒，模拟业务执行时间
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return "ok";
     }
-
-
 }

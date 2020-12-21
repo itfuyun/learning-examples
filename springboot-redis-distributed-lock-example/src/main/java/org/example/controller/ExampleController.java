@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.common.response.ResultEntity;
 import org.example.service.ExampleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,8 @@ public class ExampleController {
     ExampleService exampleService;
 
     @GetMapping
-    public String testLock() {
-        return exampleService.testLock();
+    public ResultEntity testLock() {
+        exampleService.testLock();
+        return ResultEntity.ok();
     }
 }
