@@ -2,7 +2,7 @@
 >实际项目开发中，对于请求参数校验是必不可少的，现实中很多人校验参数都是写在service中，代码极其不友好
 
 ## 普通型
-```
+```java
 @PostMapping("/user/add")
 public String add(@RequestBody UserDTO userDTO) {
     if(StringUtils.isEmpty(userDTO.getLoginName())){
@@ -31,7 +31,7 @@ public String add(@RequestBody UserDTO userDTO) {
 </dependency>
 ```
 编写实体类，只需要在参数字段上添加几个注解就可以实现自动校验
-```
+```java
 public class UserDTO {
     /**
      * 登录名
@@ -52,7 +52,7 @@ public class UserDTO {
 }
 ```
 修改下前面的controller，在参数前面加上@Validated注解
-```
+```java
 @PostMapping("/user/add")
 public void add(@Validated @RequestBody UserDTO userDTO) {
     userService.insert(userDTO);
@@ -62,7 +62,7 @@ public void add(@Validated @RequestBody UserDTO userDTO) {
 让代码更优雅。
 
 添加异常处理
-```
+```java
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -127,7 +127,7 @@ public class GlobalExceptionHandler {
 ```
 此处需要注意，校验不过的时候会抛出不同异常，比如@RequestBody修饰的参数实体抛出MethodArgumentNotValidException异常，
 而没有@RequestBody修饰的参数实体抛出BindException
-```
+```java
 @PostMapping("/user/add")
 public String add(@Validated @RequestBody UserDTO userDTO) {
     //此处因为有@RequestBody修饰，因此校验不通过的时候抛出MethodArgumentNotValidException异常
@@ -135,7 +135,7 @@ public String add(@Validated @RequestBody UserDTO userDTO) {
     return "ok";
 }
 ```
-```
+```java
 @PostMapping("/user/add")
 public String add(@Validated UserDTO userDTO) {
     //没有有@RequestBody修饰，因此校验不通过的时候抛出BindException异常
@@ -151,16 +151,16 @@ public String add(@Validated UserDTO userDTO) {
 插入用户必须要填写密码，但是修改用户可以不需要填写密码，这样该如何处理？
 
 很简单就可以实现，创建规则分组（其实就是两个接口），我暂且命名为Insert和Update，当然你也可以按自己喜好来命名
-```
+```java
 public interface Insert {
 }
 ```
-```
+```java
 public interface Update {
 }
 ```
 创建新的实体类，验证注解中填写groups，此处就是注明该条验证在什么分组下有效
-```
+```java
 public class UserGroupDTO {
     /**
      * 登录名
@@ -181,7 +181,7 @@ public class UserGroupDTO {
 }
 ```
 在controller添加一个测试方法
-```
+```java
 @PostMapping("/user/update")
 public String update(@Validated(Update.class) UserGroupDTO userGroupDTO) {
     return "ok";
