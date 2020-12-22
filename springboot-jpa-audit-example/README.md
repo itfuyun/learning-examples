@@ -55,7 +55,7 @@ public class BaseEntity {
 另外发现实体属性当中，对字段使用了@CreatedDate、@CreatedBy、@LastModifiedDate、@LastModifiedBy注解
 
 ## 实现AuditorAware
-如果我们不需要创建人和修改人，那么此过程可以忽略
+如果我们不需要创建人和修改人信息，那么此代码可以忽略
 ```
 @Component
 public class AuditorAwareImpl implements AuditorAware<String> {
@@ -77,7 +77,7 @@ public class AuditorAwareImpl implements AuditorAware<String> {
 3. 实现实现AuditorAware（非必须，用到创建人和修改人的时候需要）
 3. 启动类添加@EnableJpaAuditing
 
-@CreatedDate、@CreatedBy、@LastModifiedDate、@LastModifiedBy也并非全部使用，可以选择自己需要的
+@CreatedDate、@CreatedBy、@LastModifiedDate、@LastModifiedBy也并非必须全部使用，可以选择自己需要的
 
 ## 测试
 创建数据库表
