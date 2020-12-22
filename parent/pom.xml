@@ -14,6 +14,7 @@
         <module>../springboot-response-exception-example</module>
         <module>../springboot-validator-example</module>
         <module>../common-example</module>
+        <module>../springboot-jpa-audit-example</module>
     </modules>
 
     <name>parent</name>

@@ -10,9 +10,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>common-example</artifactId>
+    <artifactId>springboot-jpa-audit-example</artifactId>
 
-    <name>common-example</name>
+    <name>springboot-jpa-audit-example</name>
     <url>http://www.example.com</url>
 
     <properties>
@@ -22,15 +22,22 @@
     </properties>
 
     <dependencies>
-        <!--springboot web模块 -->
+        <!--公共模块 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.example</groupId>
+            <artifactId>common-example</artifactId>
         </dependency>
-        <!--测试包 -->
+        <!--jpa -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <!--数据库驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <scope>runtime</scope>
         </dependency>
     </dependencies>
+
 </project>

@@ -6,5 +6,6 @@
 -[x] [springboot-validator-example](./springboot-validator-example) springboot优雅的参数校验示例
 -[x] [springboot-redis-example](./springboot-redis-example) springboot整合redis
 -[x] [springboot-redis-distributed-lock-example](./springboot-redis-distributed-lock-example) 基于redis分布式锁
+-[x] [springboot-jpa-audit-example](./springboot-jpa-audit-example) Jpa审计功能的使用
 -[ ] [springboot-aop-log-example](./springboot-aop-log-example) springboot基于aop实现系统日志记录（待补充）
 -[ ] [springboot-configure-encryption-example](./springboot-configure-encryption-example) springboot配置文件敏感信息加密保护（待补充）
