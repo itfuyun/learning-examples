@@ -6,7 +6,7 @@
 
 - [x] [springboot-response-exception-example](./springboot-response-exception-example) springboot统一响应结果和异常处理
 
-- [x] [springboot-validator-example](./springboot-validator-example) springboot优雅的参数校验示例
+- [x] [springboot-validator-example](./springboot-validator-example) springboot优雅的参数校验
 
 - [x] [springboot-redis-example](./springboot-redis-example) springboot整合redis
 
