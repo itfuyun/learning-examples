@@ -15,7 +15,7 @@ JPA自带一项审计功能，提供@CreatedDate、@CreatedBy、@LastModifiedDat
 
 ## 实体配置
 这些审计字段都是通用的，我们考虑将其提取出来放到一个父类中
-```
+```java
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
@@ -58,7 +58,7 @@ public class BaseEntity {
 
 ## 实现AuditorAware
 如果我们不需要创建人和修改人信息，那么此代码可以忽略
-```
+```java
 @Component
 public class AuditorAwareImpl implements AuditorAware<String> {
     @Override
@@ -83,7 +83,7 @@ public class AuditorAwareImpl implements AuditorAware<String> {
 
 ## 测试
 创建数据库表
-```
+```mysql
 CREATE TABLE `user` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `username` VARCHAR(255) DEFAULT NULL,
@@ -95,7 +95,7 @@ CREATE TABLE `user` (
 ) ENGINE=INNODB
 ```
 新建业务类
-```
+```java
 @Service
 public class UserService {
 

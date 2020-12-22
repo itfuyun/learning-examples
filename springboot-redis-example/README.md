@@ -8,7 +8,7 @@
 </dependency>
 ```
 ## 添加redis配置信息
-```
+```yaml
 spring:
   redis:
     database: 0
@@ -25,7 +25,7 @@ spring:
 ```
 
 ## 添加redis配置类
-```
+```java
 @Configuration
 public class RedisConfig {
 
@@ -55,7 +55,7 @@ public class RedisConfig {
 ```
 
 ## 使用示例
-```
+```java
 @Service
 public class ExampleService {
     @Autowired

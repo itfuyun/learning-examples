@@ -34,7 +34,7 @@
 采用redis+aop+自定义注解，来实现简单的分布式锁。如何整合redis？请参考：[springboot整合redis](../springboot-redis-example) 
 
 创建自定义注解
-```
+```java
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Lock {
@@ -54,7 +54,7 @@ public @interface Lock {
 }
 ```
 编写AOP切面
-```
+```java
 @Aspect
 @Component
 public class LockAspect implements Ordered {
@@ -160,7 +160,7 @@ public class LockAspect implements Ordered {
 ```
 ## 如何使用？
 只需要在某个方法上打上自定义注解即可
-```
+```java
 @Service
 public class ExampleService {
 
