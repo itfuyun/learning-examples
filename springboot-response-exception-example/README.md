@@ -6,7 +6,7 @@
 在处理异常之前，我们先来简单封装下统一返回结果
 
 创建错误代码枚举
-```
+```java
 public enum ErrorCodeEnum {
 
     /**
@@ -75,7 +75,7 @@ public enum ErrorCodeEnum {
 }
 ```
 创建响应结果实体
-```
+```java
 public class ResultEntity<T> {
     private Integer code;
     private String msg;
@@ -210,7 +210,7 @@ public class ResultEntity<T> {
 }
 ```
 创建一个自定义业务异常类
-```
+```java
 public class BusinessException extends Exception {
     private Integer code;
     private String msg;
@@ -263,7 +263,7 @@ public class BusinessException extends Exception {
 第一种：
 
 创建GlobalExceptionHandler类
-```
+```java
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -295,7 +295,7 @@ public class GlobalExceptionHandler {
 第二种：
 
 创建ErrorControllerHandler类
-```
+```java
 @RestController
 public class ErrorControllerHandler implements ErrorController {
     /**
@@ -364,7 +364,7 @@ public class ErrorControllerHandler implements ErrorController {
 ```
 ## 测试
 创建测试用的ExampleController类
-```
+```java
 @RestController
 @RequestMapping("/example")
 public class ExampleController {
