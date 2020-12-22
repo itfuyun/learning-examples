@@ -72,7 +72,7 @@ public class AuditorAwareImpl implements AuditorAware<String> {
 
 ## 总结
 关键在于
-1. 实体字段注解 @CreatedDate、@CreatedBy、@LastModifiedDate、@LastModifiedBy注解、
+1. 实体字段注解 @CreatedDate、@CreatedBy、@LastModifiedDate、@LastModifiedBy注解
 2. 实体头部 @EntityListeners(AuditingEntityListener.class)
 3. 实现实现AuditorAware（非必须，用到创建人和修改人的时候需要）
 3. 启动类添加@EnableJpaAuditing
