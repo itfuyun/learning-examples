@@ -243,15 +243,21 @@ public class BusinessException extends Exception {
 本文介绍在SpringBoot下如何进行统一异常处理，方式有很多种，这里主要介绍两个很常用的
 - 使用@ControllerAdvice+@ExceptionHandler注解
 - 通过实现ErrorController
+
 ### 1.使用@ControllerAdvice和@ExceptionHandler注解
+
 缺点：只能处理控制器抛出的异常，比如404错误无法捕获
 
 优点：针对不同异常进行不同逻辑处理
+
 ### 2.通过实现ErrorController
+
 缺点：针对不同异常处理比较麻烦，自由度不高
 
 优点：可以处理所有的异常，包括未进入控制器的错误，比如404等错误
-## 总结
+
+## 具体实现
+
 两种方式都具有一定的优缺点，因此我们可以把两者进行结合使用
 
 第一种：
@@ -314,7 +320,6 @@ public class ErrorControllerHandler implements ErrorController {
      */
     @RequestMapping(value = ERROR_PATH)
     @ExceptionHandler(value = {Exception.class})
-    @ResponseBody
     public Object errorApiHandler(HttpServletRequest request, final Exception ex, final WebRequest req) {
         RequestAttributes requestAttributes = new ServletRequestAttributes(request);
         //获取到默认错误信息
@@ -375,11 +380,9 @@ public class ExampleController {
     }
 }
 ```
-使用postman工具分别访问端点/example/hello和/example/exception。可以发现
-异常被GlobalExceptionHandler统一处理了
+使用postman工具分别访问端点/example/hello和/example/exception。可以发现异常被GlobalExceptionHandler统一处理了
 
 再访问一个不存在的端点/example/test。此时会进入ErrorControllerHandler中处理，至此统一异常已经完成。
 
 ## 结语
-总之统一异常+统一返回结果+自定义异常可以极大的提升代码友好度，当你计划搭建一个项目基础框架时，这些功能可以说是必不可少的，
-实际项目开发中我们往往会将这些统一封装提取出来做成一个common模块或项目，然后通过maven引用公共模块
+总之：统一异常+统一返回结果+自定义异常可以极大的提升代码友好度，当你计划搭建一个项目基础框架时，这些功能可以说是必不可少的，实际项目开发中我们往往会将这些统一封装提取出来做成一个common模块或项目，然后通过maven引用公共模块
