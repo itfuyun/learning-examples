@@ -54,8 +54,8 @@ public class UserDTO {
 修改下前面的controller，在参数前面加上@Validated注解
 ```java
 @PostMapping("/user/add")
-public void add(@Validated @RequestBody UserDTO userDTO) {
-    userService.insert(userDTO);
+public ResultEntity add(@Validated UserDTO userDTO) {
+    return ResultEntity.ok("保存成功");
 }
 ```
 系统自动校验过程中，如果校验不通过将会抛出异常，因此结合另一篇文章：[springboot统一异常处理](./springboot-exception-handling-example) 
@@ -75,7 +75,7 @@ public class GlobalExceptionHandler {
      * https://github.com/spring-projects/spring-framework/issues/14790
      */
     @ExceptionHandler(BindException.class)
-    public String handleException(BindException e) {
+    public Object handleException(BindException e) {
         //获取校验结果
         BindingResult bindingResult = e.getBindingResult();
         StringBuilder stringBuilder = new StringBuilder();
@@ -86,7 +86,7 @@ public class GlobalExceptionHandler {
             String message = String.format("错误字段：%s，错误值：%s，原因：%s；", field, value, msg);
             stringBuilder.append(message).append("\r\n");
         }
-        return stringBuilder.toString();
+        return ResultEntity.failed(stringBuilder.toString());
     }
 
     /**
@@ -98,7 +98,7 @@ public class GlobalExceptionHandler {
      * https://github.com/spring-projects/spring-framework/issues/14790
      */
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public String handleException(MethodArgumentNotValidException e) {
+    public Object handleException(MethodArgumentNotValidException e) {
         //获取校验结果
         BindingResult bindingResult = e.getBindingResult();
         StringBuilder stringBuilder = new StringBuilder();
@@ -109,19 +109,31 @@ public class GlobalExceptionHandler {
             String message = String.format("错误字段：%s，错误值：%s，原因：%s；", field, value, msg);
             stringBuilder.append(message).append("\r\n");
         }
-        return stringBuilder.toString();
+        return ResultEntity.failed(stringBuilder.toString());
     }
 
     /**
-     * 异常处理
+     * 业务处理
+     *
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(BusinessException.class)
+    public Object handleException(BusinessException e) {
+        //返回错误信息
+        return ResultEntity.failed(e.getCode(),e.getMsg());
+    }
+
+    /**
+     * 其他异常处理
      *
      * @param e
      * @return
      */
     @ExceptionHandler(Exception.class)
     public Object handleException(Exception e) {
-        //可返回自定义信息，此处演示直接返回错误信息
-        return e.getMessage();
+        //返回错误信息
+        return ResultEntity.failed(e.getMessage());
     }
 }
 ```
@@ -129,18 +141,18 @@ public class GlobalExceptionHandler {
 而没有@RequestBody修饰的参数实体抛出BindException
 ```java
 @PostMapping("/user/add")
-public String add(@Validated @RequestBody UserDTO userDTO) {
+public ResultEntity add(@Validated @RequestBody UserDTO userDTO) {
     //此处因为有@RequestBody修饰，因此校验不通过的时候抛出MethodArgumentNotValidException异常
     //业务执行
-    return "ok";
+    return ResultEntity.ok();
 }
 ```
 ```java
 @PostMapping("/user/add")
-public String add(@Validated UserDTO userDTO) {
+public ResultEntity add(@Validated UserDTO userDTO) {
     //没有有@RequestBody修饰，因此校验不通过的时候抛出BindException异常
     //业务执行
-    return "ok";
+    return ResultEntity.ok();;
 }
 ```
 ## 测试
@@ -183,8 +195,8 @@ public class UserGroupDTO {
 在controller添加一个测试方法
 ```java
 @PostMapping("/user/update")
-public String update(@Validated(Update.class) UserGroupDTO userGroupDTO) {
-    return "ok";
+public ResultEntity update(@Validated(Update.class) UserGroupDTO userGroupDTO) {
+    return ResultEntity.ok("保存成功");
 }
 ```
 在@Validated中指定验证分组即可实现分别校验
