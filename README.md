@@ -14,6 +14,6 @@
 
 - [x] [springboot-jpa-audit-example](./springboot-jpa-audit-example) Jpa审计功能的使用
 
-- [ ] [springboot-aop-log-example](./springboot-aop-log-example) springboot基于aop实现系统日志记录（待补充）
+- [x] [springboot-aop-log-example](./springboot-aop-log-example) springboot基于aop实现系统日志记录
 
 - [ ] [springboot-configure-encryption-example](./springboot-configure-encryption-example) springboot配置文件敏感信息加密保护（待补充）

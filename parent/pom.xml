@@ -15,6 +15,7 @@
         <module>../springboot-validator-example</module>
         <module>../common-example</module>
         <module>../springboot-jpa-audit-example</module>
+        <module>../springboot-aop-log-example</module>
     </modules>
 
     <name>parent</name>
